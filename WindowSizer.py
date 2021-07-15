@@ -13,7 +13,7 @@ from PIL import ImageGrab
 
 top, bottom, left, right = None, None, None, None
 #initiate the screen to read data from it
-cap =  ImageGrab.grab(bbox = (0,0,100,500))
+cap =  ImageGrab.grab(bbox = (0,0,500,300))
     
 
 
@@ -21,13 +21,12 @@ while True:
     
     if top and bottom !=None:
         #print("window should be different")
-        cap =  ImageGrab.grab(bbox = (top, left, bottom, right))
+        cap =  ImageGrab.grab(bbox = (left, top, right, bottom))
         cap_arr = np.array(cap)
         cv2.imshow("", cap_arr)    
-        1
     else:
         #print("top or bottom is not set")
-        cap =  ImageGrab.grab(bbox = (0,0,100,500))
+        cap =  ImageGrab.grab(bbox = (0,0,500,300))
         cap_arr = np.array(cap)
         cv2.imshow("", cap_arr)    
         
@@ -55,18 +54,5 @@ while True:
         right = bottomRight.x
         print(bottom)
         print(right)
-    
-    #if you pressed the spacebar
-    #resize the window
-    if keypress == 32: 
-        print("spacebar")
-        #check to see that the dimensions of the axie window have been set
-        if top and bottom != None:
-            print("top = ", top)
-            cap = ImageGrab.grab(bbox=(top, left, bottom, right))
-        
-        else:
-            continue
-            
-    
+
 cv2.destroyAllWindows()
