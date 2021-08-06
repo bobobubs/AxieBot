@@ -14,6 +14,12 @@ from CardSelector import cardDetection
 import random
 import mouse
 
+CARD_TOP_LEFT_X = 186
+CARD_TOP__LEFT_Y = 1070
+CARD_BOTTOM_RIGHT_X = 2412
+CARD_BOTTOM_RIGHT_Y = 1365
+
+
 
 #Initialize position vairables
 top, bottom, left, right = None, None, None, None
@@ -22,12 +28,21 @@ cap =  ImageGrab.grab(bbox = (0,0,500,300))
     
 
 def pickCard(lines):
-    print("New Loop")
-    print(lines)
     n = random.randint(0, len(lines))
     line = lines[n][0]
     
     return line
+
+def endTurn():
+    #select random coordinates withing the "End Turn" box
+    x = random.randint(2233, 2499)
+    y = random.randint(976, 1055)
+    
+    #move to and click on the box
+    mouse.move(x, y, absolute = True, duration = 0.2)
+    mouse.click('left')
+    
+
 
 count = 0 
 
@@ -47,7 +62,9 @@ while True:
             mouse.click('left')
             count += 1
         else:
-            count = 0 
+            count = 0
+            endTurn()
+            time.sleep(20)
             continue
         
         cv2.imshow("", cap_arr)    

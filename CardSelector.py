@@ -23,8 +23,8 @@ def cardDetection(image):
             cv2.line(image, (x1, y1), (x2, y2), (20, 220, 20), 3)
     
     #print(lines[0][0])
-    plt.imshow(image)
-    plt.show()
+    #plt.imshow(image)
+    #plt.show()
     return lines
 
 image = cv2.imread("pickingCards.png")
